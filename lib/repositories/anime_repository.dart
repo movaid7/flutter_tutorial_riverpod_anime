@@ -1,11 +1,14 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:riverpod_anime/repositories/models/anime_model.dart';
+import 'package:riverpod_anime/state/request_state_notifier.dart';
 
 final dioProvider = Provider((ref) => Dio());
-
-abstract class Repository {}
+final animeRepositoryProvider = Provider((ref) => AnimeRepository(ref.read));
+final animeProvider =
+    StateNotifierProvider<GetAnimeRequestNotifier, RequestState<AnimeModel>>(
+        (ref) => GetAnimeRequestNotifier(ref.watch(animeRepositoryProvider)));
 
 class AnimeRepository {
   final Reader _read;
@@ -24,4 +27,10 @@ class AnimeRepository {
       throw e.error;
     }
   }
+}
+
+class GetAnimeRequestNotifier extends RequestStateNotifier<AnimeModel> {
+  final AnimeRepository _repository;
+  GetAnimeRequestNotifier(this._repository);
+  getAnime(String url) => makeRequest(() => _repository.getAnime(url));
 }

@@ -30,6 +30,8 @@ abstract class Result with _$Result {
     required String filename,
     Object? episode,
     required double similarity,
+    String? image,
+    double? from,
   }) = _Result;
 
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
@@ -40,7 +42,6 @@ abstract class Anilist with _$Anilist {
   const factory Anilist({
     Object? id,
     required Title title,
-    Object? image,
   }) = _Anilist;
 
   factory Anilist.fromJson(Map<String, dynamic> json) =>
@@ -50,8 +51,7 @@ abstract class Anilist with _$Anilist {
 @freezed
 abstract class Title with _$Title {
   const factory Title({
-    required String english,
-    @Default(null) Object? romaji,
+    String? english,
   }) = _Title;
 
   factory Title.fromJson(Map<String, dynamic> json) => _$TitleFromJson(json);

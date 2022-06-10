@@ -23,6 +23,8 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       filename: json['filename'] as String,
       episode: json['episode'],
       similarity: (json['similarity'] as num).toDouble(),
+      image: json['image'] as String?,
+      from: (json['from'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
@@ -30,27 +32,25 @@ Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
       'filename': instance.filename,
       'episode': instance.episode,
       'similarity': instance.similarity,
+      'image': instance.image,
+      'from': instance.from,
     };
 
 _$_Anilist _$$_AnilistFromJson(Map<String, dynamic> json) => _$_Anilist(
       id: json['id'],
       title: Title.fromJson(json['title'] as Map<String, dynamic>),
-      image: json['image'],
     );
 
 Map<String, dynamic> _$$_AnilistToJson(_$_Anilist instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'image': instance.image,
     };
 
 _$_Title _$$_TitleFromJson(Map<String, dynamic> json) => _$_Title(
-      english: json['english'] as String,
-      romaji: json['romaji'] ?? null,
+      english: json['english'] as String?,
     );
 
 Map<String, dynamic> _$$_TitleToJson(_$_Title instance) => <String, dynamic>{
       'english': instance.english,
-      'romaji': instance.romaji,
     };

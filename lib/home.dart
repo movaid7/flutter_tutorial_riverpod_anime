@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+// ignore: unused_import
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_anime/repositories/anime_repository.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends HookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -25,34 +28,60 @@ class HomeScreen extends HookWidget {
                       const InputDecoration(hintText: 'Enter image URL'),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(onPressed: () {}, child: const Text('Search'))
+                ElevatedButton(
+                    onPressed: () {
+                      ref
+                          .read(animeProvider.notifier)
+                          .getAnime(searchController.text);
+                    },
+                    child: const Text('Search'))
               ],
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Card(
-                    elevation: 2,
-                    child: Column(
-                      children: const [
-                        ListTile(
-                            leading: Text('Title'),
-                            title: Text('Attack on Titan')),
-                        ListTile(
-                            leading: Text('Title'),
-                            title: Text('Attack on Titan')),
-                        ListTile(
-                            leading: Text('Title'),
-                            title: Text('Attack on Titan'))
-                      ],
-                    ),
+            child: ref.watch(animeProvider).when(
+                  idle: () => const Center(
+                    child: Text('Enter a valid image url'),
                   ),
-                ],
-              ),
-            ),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  error: (error, _) => Center(
+                    child: Text(error.toString()),
+                  ),
+                  success: (value) {
+                    return Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            for (var anime in value!.result)
+                              Card(
+                                elevation: 2,
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                        leading: const Text('Title'),
+                                        title: Text(anime.filename.toString())),
+                                    ListTile(
+                                        leading: const Text('Episode'),
+                                        title: Text(anime.episode.toString())),
+                                    ListTile(
+                                        leading: const Text('At'),
+                                        title: Text('${anime.from}')),
+                                    ListTile(
+                                        leading: const Text('Similarity'),
+                                        title:
+                                            Text(anime.similarity.toString())),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
           )
         ],
       ),

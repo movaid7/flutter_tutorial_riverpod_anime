@@ -159,6 +159,8 @@ mixin _$Result {
   String get filename => throw _privateConstructorUsedError;
   Object? get episode => throw _privateConstructorUsedError;
   double get similarity => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  double? get from => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -170,7 +172,12 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res>;
   $Res call(
-      {Anilist anilist, String filename, Object? episode, double similarity});
+      {Anilist anilist,
+      String filename,
+      Object? episode,
+      double similarity,
+      String? image,
+      double? from});
 
   $AnilistCopyWith<$Res> get anilist;
 }
@@ -189,6 +196,8 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
     Object? filename = freezed,
     Object? episode = freezed,
     Object? similarity = freezed,
+    Object? image = freezed,
+    Object? from = freezed,
   }) {
     return _then(_value.copyWith(
       anilist: anilist == freezed
@@ -204,6 +213,14 @@ class _$ResultCopyWithImpl<$Res> implements $ResultCopyWith<$Res> {
           ? _value.similarity
           : similarity // ignore: cast_nullable_to_non_nullable
               as double,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      from: from == freezed
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 
@@ -221,7 +238,12 @@ abstract class _$$_ResultCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$$_ResultCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Anilist anilist, String filename, Object? episode, double similarity});
+      {Anilist anilist,
+      String filename,
+      Object? episode,
+      double similarity,
+      String? image,
+      double? from});
 
   @override
   $AnilistCopyWith<$Res> get anilist;
@@ -242,6 +264,8 @@ class __$$_ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
     Object? filename = freezed,
     Object? episode = freezed,
     Object? similarity = freezed,
+    Object? image = freezed,
+    Object? from = freezed,
   }) {
     return _then(_$_Result(
       anilist: anilist == freezed
@@ -257,6 +281,14 @@ class __$$_ResultCopyWithImpl<$Res> extends _$ResultCopyWithImpl<$Res>
           ? _value.similarity
           : similarity // ignore: cast_nullable_to_non_nullable
               as double,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      from: from == freezed
+          ? _value.from
+          : from // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -268,7 +300,9 @@ class _$_Result implements _Result {
       {required this.anilist,
       required this.filename,
       this.episode,
-      required this.similarity});
+      required this.similarity,
+      this.image,
+      this.from});
 
   factory _$_Result.fromJson(Map<String, dynamic> json) =>
       _$$_ResultFromJson(json);
@@ -281,10 +315,14 @@ class _$_Result implements _Result {
   final Object? episode;
   @override
   final double similarity;
+  @override
+  final String? image;
+  @override
+  final double? from;
 
   @override
   String toString() {
-    return 'Result(anilist: $anilist, filename: $filename, episode: $episode, similarity: $similarity)';
+    return 'Result(anilist: $anilist, filename: $filename, episode: $episode, similarity: $similarity, image: $image, from: $from)';
   }
 
   @override
@@ -296,7 +334,9 @@ class _$_Result implements _Result {
             const DeepCollectionEquality().equals(other.filename, filename) &&
             const DeepCollectionEquality().equals(other.episode, episode) &&
             const DeepCollectionEquality()
-                .equals(other.similarity, similarity));
+                .equals(other.similarity, similarity) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.from, from));
   }
 
   @JsonKey(ignore: true)
@@ -306,7 +346,9 @@ class _$_Result implements _Result {
       const DeepCollectionEquality().hash(anilist),
       const DeepCollectionEquality().hash(filename),
       const DeepCollectionEquality().hash(episode),
-      const DeepCollectionEquality().hash(similarity));
+      const DeepCollectionEquality().hash(similarity),
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(from));
 
   @JsonKey(ignore: true)
   @override
@@ -324,7 +366,9 @@ abstract class _Result implements Result {
       {required final Anilist anilist,
       required final String filename,
       final Object? episode,
-      required final double similarity}) = _$_Result;
+      required final double similarity,
+      final String? image,
+      final double? from}) = _$_Result;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$_Result.fromJson;
 
@@ -336,6 +380,10 @@ abstract class _Result implements Result {
   Object? get episode => throw _privateConstructorUsedError;
   @override
   double get similarity => throw _privateConstructorUsedError;
+  @override
+  String? get image => throw _privateConstructorUsedError;
+  @override
+  double? get from => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_ResultCopyWith<_$_Result> get copyWith =>
@@ -350,7 +398,6 @@ Anilist _$AnilistFromJson(Map<String, dynamic> json) {
 mixin _$Anilist {
   Object? get id => throw _privateConstructorUsedError;
   Title get title => throw _privateConstructorUsedError;
-  Object? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -361,7 +408,7 @@ mixin _$Anilist {
 abstract class $AnilistCopyWith<$Res> {
   factory $AnilistCopyWith(Anilist value, $Res Function(Anilist) then) =
       _$AnilistCopyWithImpl<$Res>;
-  $Res call({Object? id, Title title, Object? image});
+  $Res call({Object? id, Title title});
 
   $TitleCopyWith<$Res> get title;
 }
@@ -378,7 +425,6 @@ class _$AnilistCopyWithImpl<$Res> implements $AnilistCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id,
@@ -386,7 +432,6 @@ class _$AnilistCopyWithImpl<$Res> implements $AnilistCopyWith<$Res> {
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as Title,
-      image: image == freezed ? _value.image : image,
     ));
   }
 
@@ -404,7 +449,7 @@ abstract class _$$_AnilistCopyWith<$Res> implements $AnilistCopyWith<$Res> {
           _$_Anilist value, $Res Function(_$_Anilist) then) =
       __$$_AnilistCopyWithImpl<$Res>;
   @override
-  $Res call({Object? id, Title title, Object? image});
+  $Res call({Object? id, Title title});
 
   @override
   $TitleCopyWith<$Res> get title;
@@ -423,7 +468,6 @@ class __$$_AnilistCopyWithImpl<$Res> extends _$AnilistCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
-    Object? image = freezed,
   }) {
     return _then(_$_Anilist(
       id: id == freezed ? _value.id : id,
@@ -431,7 +475,6 @@ class __$$_AnilistCopyWithImpl<$Res> extends _$AnilistCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as Title,
-      image: image == freezed ? _value.image : image,
     ));
   }
 }
@@ -439,7 +482,7 @@ class __$$_AnilistCopyWithImpl<$Res> extends _$AnilistCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Anilist implements _Anilist {
-  const _$_Anilist({this.id, required this.title, this.image});
+  const _$_Anilist({this.id, required this.title});
 
   factory _$_Anilist.fromJson(Map<String, dynamic> json) =>
       _$$_AnilistFromJson(json);
@@ -448,12 +491,10 @@ class _$_Anilist implements _Anilist {
   final Object? id;
   @override
   final Title title;
-  @override
-  final Object? image;
 
   @override
   String toString() {
-    return 'Anilist(id: $id, title: $title, image: $image)';
+    return 'Anilist(id: $id, title: $title)';
   }
 
   @override
@@ -462,8 +503,7 @@ class _$_Anilist implements _Anilist {
         (other.runtimeType == runtimeType &&
             other is _$_Anilist &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.image, image));
+            const DeepCollectionEquality().equals(other.title, title));
   }
 
   @JsonKey(ignore: true)
@@ -471,8 +511,7 @@ class _$_Anilist implements _Anilist {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(image));
+      const DeepCollectionEquality().hash(title));
 
   @JsonKey(ignore: true)
   @override
@@ -486,10 +525,8 @@ class _$_Anilist implements _Anilist {
 }
 
 abstract class _Anilist implements Anilist {
-  const factory _Anilist(
-      {final Object? id,
-      required final Title title,
-      final Object? image}) = _$_Anilist;
+  const factory _Anilist({final Object? id, required final Title title}) =
+      _$_Anilist;
 
   factory _Anilist.fromJson(Map<String, dynamic> json) = _$_Anilist.fromJson;
 
@@ -497,8 +534,6 @@ abstract class _Anilist implements Anilist {
   Object? get id => throw _privateConstructorUsedError;
   @override
   Title get title => throw _privateConstructorUsedError;
-  @override
-  Object? get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_AnilistCopyWith<_$_Anilist> get copyWith =>
@@ -511,8 +546,7 @@ Title _$TitleFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Title {
-  String get english => throw _privateConstructorUsedError;
-  Object? get romaji => throw _privateConstructorUsedError;
+  String? get english => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -523,7 +557,7 @@ mixin _$Title {
 abstract class $TitleCopyWith<$Res> {
   factory $TitleCopyWith(Title value, $Res Function(Title) then) =
       _$TitleCopyWithImpl<$Res>;
-  $Res call({String english, Object? romaji});
+  $Res call({String? english});
 }
 
 /// @nodoc
@@ -537,14 +571,12 @@ class _$TitleCopyWithImpl<$Res> implements $TitleCopyWith<$Res> {
   @override
   $Res call({
     Object? english = freezed,
-    Object? romaji = freezed,
   }) {
     return _then(_value.copyWith(
       english: english == freezed
           ? _value.english
           : english // ignore: cast_nullable_to_non_nullable
-              as String,
-      romaji: romaji == freezed ? _value.romaji : romaji,
+              as String?,
     ));
   }
 }
@@ -554,7 +586,7 @@ abstract class _$$_TitleCopyWith<$Res> implements $TitleCopyWith<$Res> {
   factory _$$_TitleCopyWith(_$_Title value, $Res Function(_$_Title) then) =
       __$$_TitleCopyWithImpl<$Res>;
   @override
-  $Res call({String english, Object? romaji});
+  $Res call({String? english});
 }
 
 /// @nodoc
@@ -569,14 +601,12 @@ class __$$_TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? english = freezed,
-    Object? romaji = freezed,
   }) {
     return _then(_$_Title(
       english: english == freezed
           ? _value.english
           : english // ignore: cast_nullable_to_non_nullable
-              as String,
-      romaji: romaji == freezed ? _value.romaji : romaji,
+              as String?,
     ));
   }
 }
@@ -584,20 +614,17 @@ class __$$_TitleCopyWithImpl<$Res> extends _$TitleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Title implements _Title {
-  const _$_Title({required this.english, this.romaji = null});
+  const _$_Title({this.english});
 
   factory _$_Title.fromJson(Map<String, dynamic> json) =>
       _$$_TitleFromJson(json);
 
   @override
-  final String english;
-  @override
-  @JsonKey()
-  final Object? romaji;
+  final String? english;
 
   @override
   String toString() {
-    return 'Title(english: $english, romaji: $romaji)';
+    return 'Title(english: $english)';
   }
 
   @override
@@ -605,16 +632,13 @@ class _$_Title implements _Title {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Title &&
-            const DeepCollectionEquality().equals(other.english, english) &&
-            const DeepCollectionEquality().equals(other.romaji, romaji));
+            const DeepCollectionEquality().equals(other.english, english));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(english),
-      const DeepCollectionEquality().hash(romaji));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(english));
 
   @JsonKey(ignore: true)
   @override
@@ -628,15 +652,12 @@ class _$_Title implements _Title {
 }
 
 abstract class _Title implements Title {
-  const factory _Title({required final String english, final Object? romaji}) =
-      _$_Title;
+  const factory _Title({final String? english}) = _$_Title;
 
   factory _Title.fromJson(Map<String, dynamic> json) = _$_Title.fromJson;
 
   @override
-  String get english => throw _privateConstructorUsedError;
-  @override
-  Object? get romaji => throw _privateConstructorUsedError;
+  String? get english => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TitleCopyWith<_$_Title> get copyWith =>
